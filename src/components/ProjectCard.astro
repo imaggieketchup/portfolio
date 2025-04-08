@@ -1,13 +1,14 @@
 ---
 import { Image } from "astro:assets";
-import type { Project } from "../types/config";
-import {marked} from "marked"
+import type { ProjectItem } from "../types/config";
+import { marked } from "marked";
 
-type Props = Project;
+type Props = ProjectItem;
 
-const { title, description, image, year, url } = Astro.props;
+const { title, description, image, url } = Astro.props;
 
-const htmlDescription = marked.parse(description)
+// `year` is not part of ProjectItem — remove it or derive it from elsewhere if needed.
+const htmlDescription = marked.parse(description);
 ---
 
 <a
@@ -15,7 +16,7 @@ const htmlDescription = marked.parse(description)
   target="_blank"
   class="sm:py-5 py-10 flex flex-col sm:flex-row gap-6 group-hover:opacity-60 hover:!opacity-100 transition-opacity"
 >
-  <div class="h-full bg-gray-700 rounded-lg aspect-video sm:h-[150px]">
+  <div class="h-full bg-gray-400 rounded-lg aspect-video sm:h-[150px]">
     <Image
       width={1920}
       height={1080}
@@ -25,12 +26,7 @@ const htmlDescription = marked.parse(description)
     />
   </div>
   <div>
-    <div class="flex items-center gap-1 mb-2">
-      <h2 class="font-medium">{title}</h2>
-      <span class="opacity-60">· {year}</span>
-    </div>
-    <div class="opacity-60">
-      <Fragment set:html={htmlDescription} />
-    </div>
+    <h2 class="font-medium mb-2">{title}</h2>
+    <div class="opacity-60" set:html={htmlDescription} />
   </div>
 </a>

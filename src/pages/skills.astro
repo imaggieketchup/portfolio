@@ -1,0 +1,24 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { skillsPageContent } from "../config";
+---
+
+<Layout seo={skillsPageContent.seo}>
+  <section class="mt-10 max-w-2xl mx-auto px-6">
+    <h1 class="font-bold text-3xl mb-1">Skills</h1>
+    <p class="opacity-60 mb-10">{skillsPageContent.subtitle}</p>
+
+    <div class="space-y-8">
+      {skillsPageContent.skills.map((category) => (
+        <div class="mb-8">
+          <h2 class="font-semibold text-2xl">{category.category}</h2>
+          <ul class="list-disc pl-5 mt-3">
+            {category.items.map((item) => (
+              <li class="opacity-80">{item}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+</Layout>
