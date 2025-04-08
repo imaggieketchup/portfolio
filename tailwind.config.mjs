@@ -1,12 +1,17 @@
+import defaultTheme from 'tailwindcss/defaultTheme';
+
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+  content: [
+    './src/**/*.{astro,html,js,jsx,ts,tsx,vue,svelte}',
+    './components/**/*.{astro,html,js,jsx,ts,tsx,vue,svelte}',
+  ],
   theme: {
     extend: {
-      colors: {
-        "gray-bg": "#2E2E2E",
+      fontFamily: {
+        sans: ['Inter', ...defaultTheme.fontFamily.sans],
       },
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [],
 };
